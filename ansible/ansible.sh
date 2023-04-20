@@ -1,0 +1,1 @@
+ansible-playbook /tmp/ansible/gitlab.yml --extra-vars "password=123"

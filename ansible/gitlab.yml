@@ -1,0 +1,16 @@
+- hosts: localhost
+  vars:
+    initial_root_password: "{{ password }}"
+    gitlab_url: "http://web:8080/"
+  tasks:
+    - name: python-gitlab
+      shell: pip install python-gitlab
+    - debug: msg="{{ initial_root_password }}"
+
+    - name: Create a GitLab Project using a username/password via oauth_token
+      community.general.gitlab_project:
+        api_url: "{{ gitlab_url }}"
+        api_username: root
+        api_password: "{{ initial_root_password }}"
+        name: my_second_project
+        group: "2"
