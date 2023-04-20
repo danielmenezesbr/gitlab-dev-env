@@ -1,0 +1,17 @@
+{
+	"ulid": "01GYDVY20R4CJ4R812XCWBTWQ8",
+	"minTime": 1681934400616,
+	"maxTime": 1681941600000,
+	"stats": {
+		"numSamples": 15629626,
+		"numSeries": 32759,
+		"numChunks": 130342
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GYDVY20R4CJ4R812XCWBTWQ8"
+		]
+	},
+	"version": 1
+}

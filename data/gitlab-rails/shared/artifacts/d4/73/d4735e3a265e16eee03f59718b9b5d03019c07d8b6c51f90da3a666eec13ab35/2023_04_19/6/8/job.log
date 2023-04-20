@@ -1,0 +1,36 @@
+[0KRunning with gitlab-runner 15.10.1 (dcfb4b66)[0;m
+[0K  on meurunner NoQW_2qx, system ID: r_wclKHHr4m3JZ[0;m
+section_start:1681926978:prepare_executor[0K[0K[36;1mPreparing the "docker" executor[0;m[0;m
+[0KUsing Docker executor with image maven:latest ...[0;m
+[0KPulling docker image maven:latest ...[0;m
+[0KUsing docker image sha256:74b3391c612d5dd093c94b11610a6f4778e77ff65d41c500efe4ba20828f76ab for maven:latest with digest maven@sha256:6d4f98ee672ef9c8fac6be710ddc9ab92abc5cbe0c41c5866e9ecf61af5a496e ...[0;m
+section_end:1681926979:prepare_executor[0Ksection_start:1681926979:prepare_script[0K[0K[36;1mPreparing environment[0;m[0;m
+Running on runner-noqw2qx-project-2-concurrent-0 via fd4d9099432f...
+section_end:1681926980:prepare_script[0Ksection_start:1681926980:get_sources[0K[0K[36;1mGetting source from Git repository[0;m[0;m
+[32;1mFetching changes with git depth set to 20...[0;m
+Reinitialized existing Git repository in /builds/gitlab-instance-eb0d6907/helloworld/.git/
+[32;1mChecking out 0ef13113 as detached HEAD (ref is master)...[0;m
+Removing target/
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1681926981:get_sources[0Ksection_start:1681926981:download_artifacts[0K[0K[36;1mDownloading artifacts[0;m[0;m
+[32;1mDownloading artifacts for build-job (5)...[0;m
+Downloading artifacts from coordinator... ok      [0;m  host[0;m=gitlab-ce id[0;m=5 responseStatus[0;m=200 OK token[0;m=64_ba8tT
+section_end:1681926982:download_artifacts[0Ksection_start:1681926982:step_script[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m[0;m
+[0KUsing docker image sha256:74b3391c612d5dd093c94b11610a6f4778e77ff65d41c500efe4ba20828f76ab for maven:latest with digest maven@sha256:6d4f98ee672ef9c8fac6be710ddc9ab92abc5cbe0c41c5866e9ecf61af5a496e ...[0;m
+[32;1m$ ls -al[0;m
+total 36
+drwxrwxrwx 5 root root 4096 Apr 19 17:56 .
+drwxrwxrwx 4 root root 4096 Apr 19 17:49 ..
+drwxrwxrwx 6 root root 4096 Apr 19 17:56 .git
+-rw-rw-rw- 1 root root   47 Apr 19 17:49 .gitignore
+-rw-rw-rw- 1 root root  405 Apr 19 17:56 .gitlab-ci.yml
+-rw-rw-rw- 1 root root 1265 Apr 19 17:49 pom.xml
+-rw-rw-rw- 1 root root  234 Apr 19 17:49 README.md
+drwxrwxrwx 3 root root 4096 Apr 19 17:49 src
+drwxr-xr-x 6 root root 4096 Apr 19 17:56 target
+[32;1m$ echo "Running tests"[0;m
+Running tests
+[32;1m$ java -cp target/helloworld-1.1.jar com.coveros.demo.helloworld.HelloWorld[0;m
+Hello, World! The current time is 5:56:23 PM on April 19, 2023.
+section_end:1681926983:step_script[0K[32;1mJob succeeded[0;m

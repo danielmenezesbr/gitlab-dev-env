@@ -1,0 +1,17 @@
+{
+	"ulid": "01GYDH82MK32F51MXD1ANQGDNS",
+	"minTime": 1681923189951,
+	"maxTime": 1681927200000,
+	"stats": {
+		"numSamples": 6221963,
+		"numSeries": 32969,
+		"numChunks": 56243
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GYDH82MK32F51MXD1ANQGDNS"
+		]
+	},
+	"version": 1
+}
