@@ -1,0 +1,16 @@
+- hosts: localhost
+  tasks:
+    - name: get the initial root password
+      ansible.builtin.shell: |
+        sudo grep 'Password:' ./config/initial_root_password | sed -e 's/Password\: \(.*\)/\1/'
+      register: initial_root_password
+
+    - debug: msg="{{ initial_root_password.stdout }}"
+
+    - name: Create a GitLab Project using a username/password via oauth_token
+      community.general.gitlab_project:
+        api_url: http://localhost:8080/
+        api_username: root
+        api_password: "{{ initial_root_password.stdout }}"
+        name: my_second_project
+        group: "2"
