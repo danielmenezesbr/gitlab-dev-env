@@ -7,7 +7,7 @@ services:
     container_name: gitlab-ce
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://localhost:8080'
+        external_url 'http://web'
     ports:
       - '8080:80'
       - '8443:443'
@@ -22,7 +22,8 @@ services:
     container_name: gitlab-runner    
     restart: always
     depends_on:
-      - web
+      web:
+        condition: service_healthy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - './gitlab-runner:/etc/gitlab-runner'
