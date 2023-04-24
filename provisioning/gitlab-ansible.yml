@@ -1,0 +1,22 @@
+- hosts: localhost
+  vars:
+    gitlab_url: "http://web/"
+    gitlab_api_token: "mytoken"
+  tasks:
+    - name: Install python-gitlab
+      ansible.builtin.pip:
+        name: python-gitlab
+
+    - name: Create GitLab Project
+      community.general.gitlab_project:
+        api_url: "{{ gitlab_url }}"
+        validate_certs: false
+        api_token: "{{ gitlab_api_token }}"
+        name: java_project
+        issues_enabled: true
+        merge_method: ff
+        wiki_enabled: true
+        snippets_enabled: true
+        import_url: https://github.com/danielmenezesbr/helloworld.git
+        state: present
+      delegate_to: localhost
