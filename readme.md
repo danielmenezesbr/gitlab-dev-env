@@ -21,8 +21,8 @@ After environment provisioning, the following will be available:
 
  ```
  my-organization            (group)
-├── root                    (user)
-└── my-departament          (group)
+├── root                   (user)
+└── my-departament         (group)
     ├── team-a              (group)
     │   ├── developer-a1    (user)
     │   ├── developer-a2    (user)
