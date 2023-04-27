@@ -7,3 +7,70 @@ new_password = 'password123456@';
 user.password = new_password;
 user.password_confirmation = new_password;
 user.save!
+
+user = User.new(
+  username: 'developer-a1', 
+  password: 'password123456@', 
+  password_confirmation: 'password123456@',
+  skip_confirmation: true,
+  email: 'developer-a1@my-organization.com',
+  name: 'developer-a1')
+user.save!
+
+user = User.new(
+  username: 'developer-a2', 
+  password: 'password123456@', 
+  password_confirmation: 'password123456@',
+  skip_confirmation: true,
+  email: 'developer-a2@my-organization.com',
+  name: 'developer-a2')
+user.save!
+
+user = User.new(
+  username: 'manager-a1', 
+  password: 'password123456@', 
+  password_confirmation: 'password123456@',
+  skip_confirmation: true,
+  email: 'manager-a1@my-organization.com',
+  name: 'manager-a1')
+user.save!
+
+user = User.new(
+  username: 'architect-a1', 
+  password: 'password123456@', 
+  password_confirmation: 'password123456@',
+  skip_confirmation: true,
+  email: 'architect-a1@my-organization.com',
+  name: 'architect-a1')
+user.save!
+
+
+user = User.new(
+  username: 'developer-b1', 
+  password: 'password123456@', 
+  password_confirmation: 'password123456@',
+  skip_confirmation: true,
+  email: 'developer-b1@my-organization.com',
+  name: 'developer-b1')
+user.save!
+
+group = Group.new(name: 'my-organization', path: 'my-organization')
+group.add_member(User.find_by(username: 'root'), GroupMember::OWNER)
+group.save!
+
+group = Group.new(name: 'my-departament', path: 'my-departament')
+group.parent = Group.find_by(name: 'my-organization')
+group.save!
+
+group = Group.new(name: 'team-a', path: 'team-a')
+group.parent = Group.find_by(name: 'my-departament')
+group.add_member(User.find_by(username: 'manager-a1'), GroupMember::OWNER)
+group.add_member(User.find_by(username: 'architect-a1'), GroupMember::MAINTAINER)
+group.add_member(User.find_by(username: 'developer-a1'), GroupMember::DEVELOPER)
+group.add_member(User.find_by(username: 'developer-a2'), GroupMember::DEVELOPER)
+group.save!
+
+group = Group.new(name: 'team-b', path: 'team-b')
+group.parent = Group.find_by(name: 'my-departament')
+group.add_member(User.find_by(username: 'developer-b1'), GroupMember::DEVELOPER)
+group.save!

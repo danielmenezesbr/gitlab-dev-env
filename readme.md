@@ -16,4 +16,18 @@ User / Password: root / password123456@
 After environment provisioning, the following will be available:
  - Gitlab;
  - GitLab runner installed and configured on GitLab (registered);
- - root/java_project repository configured with its respective pipeline ([.gitlab-ci.yml](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml)).
+ - `my-organization/my-departament/team-a/java_project` repository configured with its respective pipeline ([.gitlab-ci.yml](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml)).
+ - Groups and users (password: `password123456@`):
+
+ ```
+ my-organization            (group)
+├── root                    (user)
+└── my-departament          (group)
+    ├── team-a              (group)
+    │   ├── developer-a1    (user)
+    │   ├── developer-a2    (user)
+    │   ├── manager-a1      (user)
+    │   └── architect-a1    (user)
+    └── team-b              (group)
+        └── developer-b1    (user)
+ ```

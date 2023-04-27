@@ -18,5 +18,6 @@
         wiki_enabled: true
         snippets_enabled: true
         import_url: https://github.com/danielmenezesbr/helloworld.git
+        group: my-organization/my-departament/team-a
         state: present
       delegate_to: localhost
