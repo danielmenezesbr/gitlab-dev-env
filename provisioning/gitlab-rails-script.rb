@@ -1,4 +1,4 @@
-token = User.find_by_username('root').personal_access_tokens.create(scopes: ['api', 'read_api', 'read_user', 'read_repository', 'write_repository', 'sudo', 'admin_mode'], name: 'Automation token');
+token = User.find_by_username('root').personal_access_tokens.create(scopes: ['api', 'read_api', 'read_user', 'read_repository', 'write_repository', 'sudo'], name: 'Automation token');
 token.set_token('mytoken');
 token.save!;
 

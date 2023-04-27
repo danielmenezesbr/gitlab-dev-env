@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   web:
-    image: 'gitlab/gitlab-ce:latest'
+    image: 'gitlab/gitlab-ce:15.5.4-ce.0'
     restart: always
     hostname: 'localhost'
     container_name: gitlab
@@ -20,7 +20,7 @@ services:
     networks:
       - gitlab
   gitlab-runner:
-    image: gitlab/gitlab-runner:alpine
+    image: gitlab/gitlab-runner:alpine-v15.5.2
     container_name: gitlab-runner    
     restart: always
     depends_on:
