@@ -20,3 +20,7 @@ jobs:
       - name: Build & Run
         run: |
           ./start.sh
+          
+      - name: Test server hooks
+        run: |
+          ./test-server-hooks.sh
