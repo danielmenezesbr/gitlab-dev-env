@@ -16,8 +16,7 @@ services:
       - './logs:/var/log/gitlab'
       - './data:/var/opt/gitlab'
       - './provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script.rb'
-      - './provisioning/install-server-hooks.sh:/tmp/install-server-hooks.sh'
-      - './provisioning/hooks/pre-receive:/tmp/pre-receive'
+      - ./provisioning/hooks:/opt/gitlab/embedded/service/gitlab-shell/hooks # install global server hooks
     shm_size: '256m'
     networks:
       - gitlab

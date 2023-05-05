@@ -31,3 +31,8 @@ After environment provisioning, the following will be available:
     └── team-b              (group)
         └── developer-b1    (user)
  ```
+
+
+# Global server hook
+
+It is [installed](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/docker-compose.yml#L19) a [global server hook](https://docs.gitlab.com/ee/administration/server_hooks.html?tab=GitLab+15.10+and+earlier#create-the-global-server-hook) after the environment provisioning. This global server hook is [responsible for ensuring](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/hooks/pre-receive.d/pre-receive) that the ```.gitlab-ci.yml``` file can only be updated by the `root` user.
