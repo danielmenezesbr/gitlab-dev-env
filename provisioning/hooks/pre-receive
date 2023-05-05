@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while read oldrev newrev refname
+do
+    if [[ $GL_USERNAME != "root" ]] && git diff-tree --no-commit-id --name-only -r $newrev | grep -q '.gitlab-ci.yml'; then
+        echo "Error: You cannot modify .gitlab-ci.yml. Please contact the root user." >&2
+        exit 1
+    fi
+done
+
+exit 0

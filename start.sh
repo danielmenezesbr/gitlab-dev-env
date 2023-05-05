@@ -1,5 +1,4 @@
 set -exuo pipefail
-docker build ./provisioning -t ansible &> ansible.docker.build.out
 output=$(docker inspect -f '{{.State.Status}}' gitlab 2> /dev/null||true)
 NEEDS_PROVISIONING=true
 if [ "$output" == "running" ] ||  [ "$output" == "stopped" ]; then
@@ -9,6 +8,7 @@ fi
 docker compose up -d
 
 if $NEEDS_PROVISIONING; then
+  docker build ./provisioning -t ansible &> ansible.docker.build.out
   ./provisioning/provisioning.sh
  fi
 

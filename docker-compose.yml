@@ -16,6 +16,8 @@ services:
       - './logs:/var/log/gitlab'
       - './data:/var/opt/gitlab'
       - './provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script.rb'
+      - './provisioning/install-server-hooks.sh:/tmp/install-server-hooks.sh'
+      - './provisioning/hooks/pre-receive:/tmp/pre-receive'
     shm_size: '256m'
     networks:
       - gitlab
