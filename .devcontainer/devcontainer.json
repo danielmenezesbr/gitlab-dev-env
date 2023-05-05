@@ -1,9 +1,4 @@
 {
-    "name": "Ubuntu",
-    "build": {
-      "dockerfile": "Dockerfile",
-      "context": "."
-    },
     "features": {
       "ghcr.io/devcontainers/features/docker-in-docker:2": {
         "moby": true,
@@ -13,7 +8,6 @@
         "dockerDashComposeVersion": "v2"
       }
     },
-    // earthly does best with a fair amount of storage for caching
     "hostRequirements": {
       "cpus": 4
     }
