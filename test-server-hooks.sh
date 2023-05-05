@@ -1,6 +1,8 @@
 set -exuo pipefail
 rm java_project-root -Rf||true
 rm java_project-manager-a1 -Rf||true
+git config --global user.email "manager-a1@example.com"
+git config --global user.name "manager-a1"
 git clone http://manager-a1:password123456%40@localhost:8080/my-organization/my-departament/team-a/java_project.git java_project-manager-a1
 cd java_project-manager-a1
 echo "" >> .gitlab-ci.yml
@@ -16,7 +18,8 @@ else
   echo "User manager-a1 should not be able to modify .gitlab-ci.yml due to server hook configuration."
 fi
 
-
+git config --global user.email "root@example.com"
+git config --global user.name "root"
 git clone http://root:password123456%40@localhost:8080/my-organization/my-departament/team-a/java_project.git java_project-root
 cd java_project-root
 echo "" >> .gitlab-ci.yml
