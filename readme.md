@@ -33,6 +33,8 @@ After environment provisioning, the following will be available:
  ```
 
 
-# Global server hook
+# Global server hooks
 
-It is [installed](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/docker-compose.yml#L19) a [global server hook](https://docs.gitlab.com/ee/administration/server_hooks.html?tab=GitLab+15.10+and+earlier#create-the-global-server-hook) after the environment provisioning. This global server hook is [responsible for ensuring](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/hooks/pre-receive.d/pre-receive) that the ```.gitlab-ci.yml``` file can only be updated by the `root` user.
+Two [global server hooks](https://docs.gitlab.com/ee/administration/server_hooks.html?tab=GitLab+15.10+and+earlier#create-the-global-server-hook) are [installed](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/docker-compose.yml#L20) after the environment provisioning:
+- [Global server hook written in bash](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/hooks/pre-receive.d/001-pre-receive). It's responsible for ensuring that the ```.gitlab-ci.yml``` file can only be updated by the `root` user. By default, this server hook is disabled. If you want to enable it, update the [file](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/hooks/pre-receive.d/001-pre-receive).
+- [Global server hook written in Ruby](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/hooks/pre-receive.d/002-pre-receive) that ensures the security of the `.gitlab-ci.yml` file, allowing only users belonging to the group path `my-organization` to update it. This server hook is enabled by default.
