@@ -1,4 +1,4 @@
 set -exuo pipefail
 docker compose down
-sudo rm config data gitlab-runner logs -Rf
+rm -rf config/ data/ gitlab-runner/ logs/||sudo rm -rf config/ data/ gitlab-runner/ logs/||true
 ./start.sh

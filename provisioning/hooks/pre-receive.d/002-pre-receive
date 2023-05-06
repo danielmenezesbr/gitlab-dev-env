@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+=begin
+Gitlab 15.5.4 uses Gitlab Gem 4.16.1: https://www.rubydoc.info/gems/gitlab/4.16.1
+=end
+require 'gitlab'
+
+while line = gets
+  oldrev, newrev, refname = line.split(' ')
+
+  if `git diff-tree --no-commit-id --name-only -r #{newrev}`.include?('.gitlab-ci.yml')
+    Gitlab.endpoint = 'http://web/api/v4'
+    Gitlab.private_token = 'mytoken'
+
+    group_path = 'my-organization'
+    group_id = nil
+    user_id = ENV['GL_ID'] # GL_ID example: user-123456
+    match = /-(\d+)/.match(user_id)
+    if !match || match.size != 2
+      puts "GL-HOOK-ERR: t was not possible to extract the user_id from the GL_ID (#{user_id}) environment variable."
+    else
+      user_id = match[1]
+    end
+    puts "user_id: #{user_id}"
+
+=begin
+    # for local test without ENV['GL_ID']
+    user_id = nil
+    username = 'root'
+    users = Gitlab.user_search(username)
+
+    if users.empty?
+      puts "GL-HOOK-ERR: The username #{username} could not be found."
+      exit 1
+    else
+      user_id = users[0].id
+    end
+=end
+    begin
+      groups = Gitlab.group_search(group_path)
+
+      groups.each do |item|
+        if item.path == group_path
+          group_id = item.id
+          break
+        end
+      end
+
+      if !group_id
+        puts "GL-HOOK-ERR: The group path #{group_path} could not be found."
+        exit 1
+      end
+    rescue exception
+      puts "GL-HOOK-ERR: Error: #{exception.message}"
+      exit 1
+    end
+
+    begin
+      Gitlab.group_member(group_id, user_id)
+    rescue => exception
+      puts exception.response_status
+      if exception.response_status == 404
+        puts "GL-HOOK-ERR: You cannot modify .gitlab-ci.yml. Only users who belong to the group_id=#{group_id} are allowed to edit the .gitlab-ci.yml."
+      else
+        puts "GL-HOOK-ERR: You cannot modify .gitlab-ci.yml. #{exception.message}."
+      end
+      exit 1
+    end
+  end
+end
+
+puts "OK"
+
+exit 0
