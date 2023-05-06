@@ -19,17 +19,22 @@ After environment provisioning, the following will be available:
  - `my-organization/my-departament/team-a/java_project` repository configured with its respective pipeline ([.gitlab-ci.yml](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml)).
  - Groups and users (password: `password123456@`):
 
- ```
- my-organization            (group)
-├── root                   (user)
-└── my-departament         (group)
-    ├── team-a              (group)
-    │   ├── developer-a1    (user)
-    │   ├── developer-a2    (user)
-    │   ├── manager-a1      (user)
-    │   └── architect-a1    (user)
-    └── team-b              (group)
-        └── developer-b1    (user)
+ ```mermaid
+graph TB;
+    subgraph groups
+        box1_1[my-organization] --> box1_2[my-departament]
+        box1_2 --> box1_3[my-team-a]
+        box1_2 --> box1_4[my-team-b]
+    end
+    subgraph users
+        box2_1[developer-a1<BR>developer-a2<br>manager-a1<br>architect-a1]
+        box2_2[root]
+        box2_3[developer-b1]
+    end
+
+box1_1 --> box2_2
+box1_3 --> box2_1
+box1_4 --> box2_3
  ```
 
 
