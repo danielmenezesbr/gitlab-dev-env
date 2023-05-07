@@ -3,21 +3,20 @@
     gitlab_url: "http://web/"
     gitlab_api_token: "mytoken"
   tasks:
-    - name: Install python-gitlab
-      ansible.builtin.pip:
-        name: python-gitlab
-
+    - name: Install deps
+      shell: |
+        ansible-galaxy collection install community.general:6.6.0
+        pip install -U 'python-gitlab<1.13'
     - name: Create GitLab Project
-      community.general.gitlab_project:
+      gitlab_project:
         api_url: "{{ gitlab_url }}"
         validate_certs: false
         api_token: "{{ gitlab_api_token }}"
         name: java_project
         issues_enabled: true
-        merge_method: ff
+        #merge_method: ff
         wiki_enabled: true
         snippets_enabled: true
         import_url: https://github.com/danielmenezesbr/helloworld.git
         group: my-organization/my-departament/team-a
         state: present
-      delegate_to: localhost

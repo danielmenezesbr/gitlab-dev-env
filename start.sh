@@ -8,7 +8,6 @@ fi
 docker compose up -d
 
 if $NEEDS_PROVISIONING; then
-  docker build ./provisioning -t ansible &> ansible.docker.build.out
   ./provisioning/provisioning.sh
  fi
 
