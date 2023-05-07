@@ -11,5 +11,6 @@
     "hostRequirements": {
       "cpus": 4
     },
-    "postAttachCommand": "./start.sh"
+    "postAttachCommand": "./start.sh",
+    "forwardPorts": [ 8080 ]
   }
