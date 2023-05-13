@@ -20,3 +20,16 @@
         import_url: https://github.com/danielmenezesbr/helloworld.git
         group: my-organization/my-departament/team-a
         state: present
+    - name: Create GitLab Project
+      gitlab_project:
+        api_url: "{{ gitlab_url }}"
+        validate_certs: false
+        api_token: "{{ gitlab_api_token }}"
+        name: java_project_jenkins
+        issues_enabled: true
+        #merge_method: ff
+        wiki_enabled: true
+        snippets_enabled: true
+        import_url: https://github.com/danielmenezesbr/spring-boot-rest-swagger-example.git
+        group: my-organization/my-departament/team-a
+        state: present

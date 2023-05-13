@@ -34,3 +34,4 @@ def connection = new GitLabConnection("my-gitlab-conn", "http://web", "gitlab-cr
 gitlabPluginConfig.addConnection(connection);
 
 gitlabPluginConfig.save()
+

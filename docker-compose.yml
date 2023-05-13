@@ -10,8 +10,8 @@ services:
     cpus: 0.0
     ports:
       - "8081:8080"
-    volumes:
-      - ./jenkins_home:/var/jenkins_home
+#    volumes:
+#      - ./jenkins_home:/var/jenkins_home
     networks:
       - gitlab
   web:
@@ -27,11 +27,12 @@ services:
       - '8080:80'
       - '8443:443'
     volumes:
-      - './config:/etc/gitlab'
-      - './logs:/var/log/gitlab'
-      - './data:/var/opt/gitlab'
-      - './provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script.rb'
+      - ./config:/etc/gitlab
+      - ./logs:/var/log/gitlab
+      - ./data:/var/opt/gitlab
+      - ./provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script.rb
       - ./provisioning/hooks:/opt/gitlab/embedded/service/gitlab-shell/hooks # install global server hooks
+      - ./provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script-after-ansible.rb
     shm_size: '256m'
     networks:
       - gitlab

@@ -3,7 +3,9 @@ ENV JENKINS_USER admin
 ENV JENKINS_PASS password123456@
 USER jenkins
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY gitlab-plugin-config.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 001-default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 002-gitlab-plugin-config.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 003-job.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 004-api-token.groovy /usr/share/jenkins/ref/init.groovy.d/
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt

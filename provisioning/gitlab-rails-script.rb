@@ -74,3 +74,25 @@ group = Group.new(name: 'team-b', path: 'team-b')
 group.parent = Group.find_by(name: 'my-departament')
 group.add_member(User.find_by(username: 'developer-b1'), GroupMember::DEVELOPER)
 group.save!
+
+
+config = Gitlab::CurrentSettings.current_application_settings
+config.allow_local_requests_from_hooks_and_services = true
+config.default_auto_devops_pipeline_enabled = false
+config.save!
+
+
+=begin
+namespace_name = "my-organization/my-departament/team-a"
+project_name = "java_project_jenkins"
+project = Project.find_by_path("#{namespace_name}/#{project_name}")
+
+webhook = project.hooks.new(
+  url: "http://jenkins:8080/project/MeuJobDePipeline",
+  push_events: true,
+  tag_push_events: true,
+  enable_ssl_verification: false
+)
+
+webhook.save!
+=end
