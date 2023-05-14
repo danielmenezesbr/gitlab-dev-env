@@ -32,7 +32,7 @@ services:
       - ./data:/var/opt/gitlab
       - ./provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script.rb
       - ./provisioning/hooks:/opt/gitlab/embedded/service/gitlab-shell/hooks # install global server hooks
-      - ./provisioning/gitlab-rails-script.rb:/tmp/gitlab-rails-script-after-ansible.rb
+      - ./provisioning/gitlab-rails-script-after-ansible.rb:/tmp/gitlab-rails-script-after-ansible.rb
     shm_size: '256m'
     networks:
       - gitlab

@@ -9,7 +9,7 @@ import com.dabsquared.gitlabjenkins.connection.GitLabConnectionConfig
 import com.dabsquared.gitlabjenkins.connection.GitLabConnection
 import com.dabsquared.gitlabjenkins.gitlab.api.impl.AutodetectGitLabClientBuilder
 
-def apiToken = Secret.fromString("mytoken")
+def apiToken = Secret.fromString("token-string-here321")
 def id = "gitlab-credentials";
 def gitlabHostUrl = "http://web"
 description = "gitlab-credentials"
@@ -31,7 +31,8 @@ def jenkins = Jenkins.getInstance()
 
 def gitlabPluginConfig = jenkins.getDescriptorByType(GitLabConnectionConfig.class)
 def connection = new GitLabConnection("my-gitlab-conn", "http://web", "gitlab-credentials", new AutodetectGitLabClientBuilder(), true, 10, 10)
-gitlabPluginConfig.addConnection(connection);
+gitlabPluginConfig.addConnection(connection)
+gitlabPluginConfig.setUseAuthenticatedEndpoint(false)
 
 gitlabPluginConfig.save()
 
