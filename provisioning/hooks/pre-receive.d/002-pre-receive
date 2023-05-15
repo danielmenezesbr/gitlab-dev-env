@@ -9,7 +9,7 @@ while line = gets
 
   if `git diff-tree --no-commit-id --name-only -r #{newrev}`.include?('.gitlab-ci.yml')
     Gitlab.endpoint = 'http://web/api/v4'
-    Gitlab.private_token = 'mytoken'
+    Gitlab.private_token = 'token-string-here321'
 
     group_path = 'my-organization'
     group_id = nil

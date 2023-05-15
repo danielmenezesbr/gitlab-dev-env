@@ -1,12 +1,26 @@
-token = User.find_by_username('root').personal_access_tokens.create(scopes: ['api', 'read_api', 'read_user', 'read_repository', 'write_repository', 'sudo'], name: 'Automation token');
-token.set_token('mytoken');
-token.save!;
+
+require 'net/http'
 
 user = User.find_by_username('root');
 new_password = 'password123456@';
 user.password = new_password;
 user.password_confirmation = new_password;
+user.skip_confirmation = true
+user.email = 'root@my-organization.com'
 user.save!
+
+user = User.find_by_username('root')
+personal_access_token = user.personal_access_tokens.create(scopes: ['api', 'read_api', 'read_user', 'read_repository', 'write_repository', 'sudo'], name: 'New Token', expires_at: nil)
+personal_access_token.set_token('token-string-here321')
+personal_access_token.save!
+
+uri = URI('http://web/api/v4/application/settings?allow_local_requests_from_web_hooks_and_services=true&auto_devops_enabled=false')
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net::HTTP::Put.new(uri.request_uri)
+
+request['PRIVATE-TOKEN'] = 'token-string-here321'
+response = http.request(request)
+puts response.code
 
 user = User.new(
   username: 'developer-a1', 

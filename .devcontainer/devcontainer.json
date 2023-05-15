@@ -12,5 +12,5 @@
       "cpus": 4
     },
     "postAttachCommand": "./start.sh",
-    "forwardPorts": [ 8080 ]
+    "forwardPorts": [ 8080, 8081 ]
   }

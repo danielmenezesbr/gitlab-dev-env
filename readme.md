@@ -16,8 +16,10 @@ User / Password: root / password123456@
 After environment provisioning, the following will be available:
  - Gitlab;
  - GitLab runner installed and configured on GitLab (registered);
- - `my-organization/my-departament/team-a/java_project` repository configured with its respective pipeline ([.gitlab-ci.yml](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml)).
- - Groups and users (password: `password123456@`):
+ - Jenkins;
+ - `my-organization/my-departament/team-a/java_project` repository configured with [Gitlab-CI pipeline](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml).
+  - `my-organization/my-departament/team-a/java_project_jenkins` repository configured with [Jenkins pipeline](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/master/docker/003-job.groovy).
+ - Groups, users (password: `password123456@`) and repositories:
 
  ```mermaid
 graph TB;
@@ -26,15 +28,21 @@ graph TB;
         box1_2 --> box1_3[my-team-a]
         box1_2 --> box1_4[my-team-b]
     end
-    subgraph users
-        box2_1[developer-a1<BR>developer-a2<br>manager-a1<br>architect-a1]
-        box2_2[root]
-        box2_3[developer-b1]
+    subgraph users / role
+        box2_1[developer-a1 / DEVELOPER<BR>developer-a2 / DEVELOPER<br>manager-a1 / OWNER<br>architect-a1 / MAINTAINER]
+        box2_3[developer-b1 / DEVELOPER]
+        box2_2[root / OWNER]
+    end
+    subgraph repositories / CI
+        box3_1[java_project / GitLab-CI]
+        box3_2[java_project_jenkins / Jenkins]
     end
 
 box1_1 --> box2_2
 box1_3 --> box2_1
 box1_4 --> box2_3
+box1_3 --> box3_1
+box1_3 --> box3_2
  ```
 
 
