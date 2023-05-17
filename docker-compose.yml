@@ -1,18 +1,20 @@
 version: '3.7'
 services:
   jenkins:
-    image: docker.io/bitnami/jenkins:2
+    build:
+      context: ./provisioning/jenkins-bitnami
+      dockerfile: Dockerfile
     hostname: 'localhost'
     container_name: jenkins
     cpus: 0.0
     ports:
       - "8081:8080"
     environment:
+      - JENKINS_USERNAME=root
       - JENKINS_PASSWORD=password123456@
-      - JENKINS_PLUGINS='trilead-apiplugin,cloudbees-folder,antisamy-markup-formatter,jdk-tool,script-security,command-launcher,structs,workflow-step-api,token-macro,bouncycastle-api,build-timeout,credentials,plain-credentials,ssh-credentials,credentials-binding,scm-api,workflow-api,timestamper,workflow-support,durable-task,workflow-durable-task-step,junit,matrix-project,resource-disposer,ws-cleanup,ant,ace-editor,jquery-detached,workflow-scm-step,workflow-cps,workflow-job,apache-httpcomponents-client-4-api,display-url-api,mailer,workflow-basic-steps,gradle,pipeline-milestone-step,jackson2-api,pipeline-input-step,pipeline-stage-step,pipeline-graph-analysis,pipeline-rest-api,handlebars,momentjs,pipeline-stage-view,pipeline-build-step,pipeline-model-api,pipeline-model-extensions,jsch,git-client,git-server,workflow-cps-global-lib,branch-api,workflow-multibranch,authentication-tokens,docker-commons,docker-workflow,pipeline-stage-tags-metadata,pipeline-model-declarative-agent,pipeline-model-definition,lockable-resources,workflow-aggregator,github-api,git,github,github-branch-source,pipeline-github-lib,mapdb-api,subversion,ssh-slaves,matrix-auth,pam-auth,ldap,email-ext,docker-java-api,docker-plugin,gitlab-plugin'
+      - JENKINS_PLUGINS=antisamy-markup-formatter,jdk-tool,script-security,command-launcher,structs,workflow-step-api,token-macro,bouncycastle-api,build-timeout,credentials,plain-credentials,ssh-credentials,credentials-binding,scm-api,workflow-api,timestamper,workflow-support,durable-task,workflow-durable-task-step,junit,matrix-project,resource-disposer,ws-cleanup,ant,ace-editor,jquery-detached,workflow-scm-step,workflow-cps,workflow-job,apache-httpcomponents-client-4-api,display-url-api,mailer,workflow-basic-steps,gradle,pipeline-milestone-step,jackson2-api,pipeline-input-step,pipeline-stage-step,pipeline-graph-analysis,pipeline-rest-api,handlebars,momentjs,pipeline-stage-view,pipeline-build-step,pipeline-model-api,pipeline-model-extensions,jsch,git-client,git-server,workflow-cps-global-lib,branch-api,workflow-multibranch,authentication-tokens,docker-commons,docker-workflow,pipeline-stage-tags-metadata,pipeline-model-declarative-agent,pipeline-model-definition,lockable-resources,workflow-aggregator,github-api,git,github,github-branch-source,pipeline-github-lib,mapdb-api,subversion,ssh-slaves,matrix-auth,pam-auth,ldap,email-ext,docker-java-api,docker-plugin,gitlab-plugin
     volumes:
-      - ./jenkins_home:/bitnami/jenkins
-      - ./jenkins/jenkins-init.groovy.d:/usr/share/jenkins/ref/init.groovy.d
+      - jenkins-data:/bitnami/jenkins
     networks:
       - gitlab
   web:
