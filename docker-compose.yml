@@ -1,19 +1,5 @@
 version: '3.7'
 services:
-  jenkins:
-    build:
-      context: ./jenkins/docker
-      dockerfile: Dockerfile
-    image: jenkins-custom
-    hostname: 'localhost'
-    container_name: jenkins
-    cpus: 0.0
-    ports:
-      - "8081:8080"
-    volumes:
-      - jenkins-data:/var/jenkins_home
-    networks:
-      - gitlab
   web:
     image: 'gitlab/gitlab-ce:15.5.4-ce.0'
     cpus: 0.0
@@ -47,6 +33,21 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - './gitlab-runner:/etc/gitlab-runner'
+    networks:
+      - gitlab
+  jenkins:
+    # Jenkins official image
+    build:
+      context: ./provisioning/jenkins-official
+      dockerfile: Dockerfile
+    image: jenkins-official-custom
+    hostname: 'localhost'
+    container_name: jenkins
+    cpus: 0.0
+    ports:
+      - "8081:8080"
+    volumes:
+      - jenkins-data:/var/jenkins_home
     networks:
       - gitlab
 volumes:
