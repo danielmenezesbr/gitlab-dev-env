@@ -4,7 +4,7 @@ This repository creates a development environment for testing GitLab CE features
 
 | [![Gitpod ready-to-code](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/danielmenezesbr/gitlab-dev-env) | [![Open this project in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/danielmenezesbr/gitlab-dev-env) | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=danielmenezesbr/gitlab-dev-env) |
 | --- | --- | --- |
-| GitPod users will have the environment automatically provisioned upon IDE startup. | To provision the environment in Google Cloud Shell, run the command `./start.sh` | Choose a machine with at least 4 cores. Github Codespaces users will have the environment automatically provisioned upon IDE startup. <br/> Jenkins becomes unstable when using only 8GB of memory in CodeSpaces (exited with 137). |
+| GitPod users will have the environment automatically provisioned upon IDE startup. <br/><br/> Free monthly hour limit: 50 hours. | To provision the environment in Google Cloud Shell, run the command `./start.sh` <br/><br/> Free weekly hour limit: 60 hours.| Choose a machine with at least 4 cores. Github Codespaces users will have the environment automatically provisioned upon IDE startup. <br/><br/> Jenkins becomes unstable when using only 8GB of memory in CodeSpaces (exited with 137). <br/><br/> Free monthly hour limit: 30 hours (4 cores) |
 
 User/password to log into Gitlab will be displayed on the console when the environment is ready for use:
 
@@ -18,7 +18,7 @@ After environment provisioning, the following will be available:
  - GitLab runner installed and configured on GitLab (registered);
  - Jenkins;
  - `my-organization/my-departament/team-a/java_project` repository configured with [Gitlab-CI pipeline](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml).
-  - `my-organization/my-departament/team-a/java_project_jenkins` repository configured with [Jenkins pipeline](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/master/docker/003-job.groovy).
+  - `my-organization/my-departament/team-a/java_project_jenkins` repository configured with [Jenkins pipeline](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/jenkins-official/003-job.groovy).
  - Groups, users (password: `password123456@`) and repositories:
 
  ```mermaid
