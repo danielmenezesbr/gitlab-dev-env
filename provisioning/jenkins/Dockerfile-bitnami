@@ -1,0 +1,6 @@
+FROM bitnami/jenkins:2.387.3
+
+COPY 001-default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 002-gitlab-plugin-config.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 003-job.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY 004-api-token.groovy /usr/share/jenkins/ref/init.groovy.d/
