@@ -18,7 +18,7 @@ After environment provisioning, the following will be available:
  - GitLab runner installed and configured on GitLab (registered);
  - Jenkins;
  - `my-organization/my-departament/team-a/java_project` repository configured with [Gitlab-CI pipeline](https://github.com/danielmenezesbr/helloworld/blob/master/.gitlab-ci.yml).
-  - `my-organization/my-departament/team-a/java_project_jenkins` repository configured with [Jenkins pipeline](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/jenkins-official/003-job.groovy).
+  - `my-organization/my-departament/team-a/java_project_jenkins` repository configured with [Jenkins pipeline](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/jenkins/003-job.groovy).
  - Groups, users (password: `password123456@`) and repositories:
 
  ```mermaid
