@@ -75,3 +75,4 @@ email-ext
 docker-java-api
 docker-plugin
 gitlab-plugin
+http_request
