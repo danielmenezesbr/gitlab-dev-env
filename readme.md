@@ -24,25 +24,32 @@ After environment provisioning, the following will be available:
  ```mermaid
 graph TB;
     subgraph groups
-        box1_1[my-organization] --> box1_2[my-departament]
-        box1_2 --> box1_3[my-team-a]
-        box1_2 --> box1_4[my-team-b]
+        my-organization --> my-departament
+        my-departament --> my-team-a
+        my-departament --> my-team-b
     end
     subgraph users / role
-        box2_1[developer-a1 / DEVELOPER<BR>developer-a2 / DEVELOPER<br>manager-a1 / OWNER<br>architect-a1 / MAINTAINER]
-        box2_3[developer-b1 / DEVELOPER]
-        box2_2[root / OWNER]
+        users-my-team-a[developer-a1 / DEVELOPER<BR>developer-a2 / DEVELOPER<br>manager-a1 / OWNER<br>architect-a1 / MAINTAINER]
+        users-my-team-b[developer-b1 / DEVELOPER]
+        root[root / OWNER]
     end
-    subgraph repositories / CI
-        box3_1[java_project / GitLab-CI]
-        box3_2[java_project_jenkins / Jenkins]
+    subgraph repositories
+        java_project
+        java_project_jenkins
+    end
+    subgraph CI
+        GitLab-CI
+        Jenkins
     end
 
-box1_1 --> box2_2
-box1_3 --> box2_1
-box1_4 --> box2_3
-box1_3 --> box3_1
-box1_3 --> box3_2
+my-organization --> root
+my-team-a --> users-my-team-a
+my-team-b --> users-my-team-b
+my-team-a --> java_project
+my-team-a --> java_project_jenkins
+java_project --> GitLab-CI
+java_project_jenkins --> Jenkins
+
  ```
 
 
