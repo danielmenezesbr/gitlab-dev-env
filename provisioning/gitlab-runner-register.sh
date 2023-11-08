@@ -13,7 +13,8 @@ do
         --run-untagged  \
         --docker-privileged=true \
         --docker-network-mode gitlab-network \
-        --docker-image=maven:latest \
+        --docker-image=intension/docker-dind-maven:3.8.5-r0-openjdk17 \
+        --docker-volumes /var/run/docker.sock:/var/run/docker.sock
     --tag-list "private-runner" && break
    n=$((n+1)) 
    sleep 30
