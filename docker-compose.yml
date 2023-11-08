@@ -23,7 +23,7 @@ services:
     networks:
       - gitlab
   gitlab-runner:
-    image: gitlab/gitlab-runner:alpine-v15.5.2
+    image: gitlab/gitlab-runner:alpine-v15.11.0
     cpus: 0.0
     container_name: gitlab-runner    
     restart: always
