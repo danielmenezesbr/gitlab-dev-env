@@ -6,3 +6,5 @@ java_project-manager-a1/
 java_project-root/
 jenkins_home/
 *.out
+.idea/
+*.iml

@@ -68,7 +68,13 @@ user = User.new(
   name: 'developer-b1')
 user.save!
 
-group = Group.new(name: 'my-organization', path: 'my-organization')
+sonar_token = ARGV[0]
+group = Group.new(name: 'my-organization', path: 'my-organization', variables_attributes: [
+  { key: 'SONAR_TOKEN', value: sonar_token },
+  { key: 'SONAR_HOST_URL', value: 'http://sonarqube:9000' },
+  { key: 'SONAR_QUALITYGATE_TIMEOUT', value: '400' },
+  { key: 'SONAR_QUALITYGATE_WAIT', value: 'true' }
+])
 group.add_member(User.find_by(username: 'root'), GroupMember::OWNER)
 group.save!
 
