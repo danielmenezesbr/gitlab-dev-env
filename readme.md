@@ -41,7 +41,7 @@ graph TB;
         GitLab-CI
         Jenkins
     end
-    subgraph QA Tools
+    subgraph QA-Tools
         SonarQube
     end
 
@@ -52,7 +52,7 @@ my-team-a --> java_project
 my-team-a --> java_project_jenkins
 java_project --> GitLab-CI
 java_project_jenkins --> Jenkins
-java_project --> SonarQube
+GitLab-CI --> QA-Tools
 
  ```
 
