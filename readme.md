@@ -21,6 +21,7 @@ After environment provisioning, the following will be available:
   - `my-organization/my-departament/team-a/java_project_jenkins` repository configured with [Jenkins pipeline](https://github.com/danielmenezesbr/gitlab-dev-env/blob/master/provisioning/jenkins/003-job.groovy).
  - Groups, users (password: `password123456@`) and repositories:
 
+[](#diagram)
  ```mermaid
 graph TB;
     subgraph groups
